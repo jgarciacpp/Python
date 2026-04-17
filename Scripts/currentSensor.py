@@ -27,15 +27,21 @@ print("Sampling at ~2 kHz. Press Ctrl+C to stop.")
 next_time = time.perf_counter()
 
 voltage_buffer = deque(maxlen=100) # [Buffer that holds 100 items]
+current_buffer = deque(maxlen=100) # [Buffer for current sensor]
 
 try:
     counter = 0 # [Counter for while loop]
     while True:
         counter += 1
-        raw_value = read_adc(0)
-        voltage = (raw_value / 1023.0) * 3.3
+        raw_value_v = read_adc(0)
+        voltage = (raw_value_v / 1023.0) * 3.3
         voltage_buffer.append(voltage)
         avg_voltage = sum(voltage_buffer) / len(voltage_buffer)
+
+        raw_value_c = read_adc(1)
+        current = (raw_value_c / 1023.0) * 3.3
+        current_buffer.append(current)
+        avg_current = sum(current_buffer) / len(current_buffer)
     
         # Maintain stable timing
         next_time += sample_period
@@ -44,7 +50,7 @@ try:
             time.sleep(sleep_time)
     
         if counter % 20 == 0:
-            print(f"Raw: {avg_voltage:.4f}V")
+            print(f"Raw Avg V: {avg_voltage:.4f}V | Raw Avg I: {avg_current:.4f}A")
 
 
 except KeyboardInterrupt:
