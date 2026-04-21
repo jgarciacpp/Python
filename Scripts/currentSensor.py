@@ -50,7 +50,7 @@ try:
             time.sleep(sleep_time)
     
         if counter % 20 == 0:
-            print(f"Raw Avg Voltage Conditioning: {avg_voltage:.4f}V | Raw Avg Current Conditioning: {avg_current:.4f}A")
+            print(f"Raw Avg Voltage Conditioning: {avg_voltage:.4f}V | Raw Avg Current Conditioning: {avg_current:.4f}V")
 
 
 except KeyboardInterrupt:
