@@ -16,8 +16,8 @@ V_REF = 3.3
 ADC_MAX = 1024
 
 # UPDATE THESE: Circuit gains from Design Module 2
-VOLTAGE_SCALE = 1.0 
-CURRENT_SCALE = 1.0 
+VOLTAGE_SCALE = 1.415
+CURRENT_SCALE = 15.0
 
 # ==============================
 # HARDWARE SETUP
